@@ -1,0 +1,45 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileManager", "FileManager\FileManager.csproj", "{37E4544E-6D63-4A08-BF84-80947EBFEA44}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PublishScripts", "PublishScripts", "{901649F1-325A-4629-9F7A-8FDE9D67C9F2}"
+	ProjectSection(SolutionItems) = preProject
+		PublishScripts\AzureWebsitePublishModule.psm1 = PublishScripts\AzureWebsitePublishModule.psm1
+		PublishScripts\Publish-WebApplicationWebsite.ps1 = PublishScripts\Publish-WebApplicationWebsite.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configurations", "Configurations", "{742CF351-AB69-479E-91AC-BE3115ED1067}"
+	ProjectSection(SolutionItems) = preProject
+		PublishScripts\Configurations\FileManager-WAWS-dev.json = PublishScripts\Configurations\FileManager-WAWS-dev.json
+	EndProjectSection
+EndProject
+Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "FileManager.Azure", "FileManager.Azure\FileManager.Azure.ccproj", "{49470850-9B88-49EA-B3BD-76CC78DD42DD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{37E4544E-6D63-4A08-BF84-80947EBFEA44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37E4544E-6D63-4A08-BF84-80947EBFEA44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37E4544E-6D63-4A08-BF84-80947EBFEA44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37E4544E-6D63-4A08-BF84-80947EBFEA44}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49470850-9B88-49EA-B3BD-76CC78DD42DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49470850-9B88-49EA-B3BD-76CC78DD42DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49470850-9B88-49EA-B3BD-76CC78DD42DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49470850-9B88-49EA-B3BD-76CC78DD42DD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{742CF351-AB69-479E-91AC-BE3115ED1067} = {901649F1-325A-4629-9F7A-8FDE9D67C9F2}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Data.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.TransientFaultHandling.6.0.1304.0\lib\portable-net45+win+wp8;packages\EnterpriseLibrary.TransientFaultHandling.Data.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.TransientFaultHandling.WindowsAzure.Storage.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.TransientFaultHandling.Caching.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.TransientFaultHandling.ServiceBus.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.TransientFaultHandling.Configuration.6.0.1304.0\lib\NET45
+	EndGlobalSection
+EndGlobal

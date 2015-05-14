@@ -1,0 +1,122 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/_BasicLayout.cshtml";
+}
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    @*<meta name="viewport" content="width=device-width" />*@
+    <title>Index</title>
+    <link rel="stylesheet" href="~/Content/bootstrap.css" />
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/MyStyles.css" />
+</head>
+<body>
+    <div id="content">
+        <div class="row">
+            <div class="col-lg-4" style="font-size:18px; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; margin-top:10%;">
+                Нажмите на облако, чтобы загрузить файл.
+            </div>
+            <div class="col-lg-4">
+                <img src="https://filemanagerstorage.blob.core.windows.net/images/2015-04-30-17:12:32-preview.png" id="upload">
+                <div id="progress" class="progress" style="margin-top:20px;" hidden>
+                    <div id="progressBar" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+                        0%
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4"></div>
+        </div>
+    </div>
+
+    <div id="ref" hidden style="text-align:center">
+        <a id="link"></a>
+    </div>
+
+    <div id="rad">
+        <input type="radio" name="time" id="r1" value="1" checked />1 день
+        <input type="radio" name="time" id="r2" value="5" />5 дней
+        <input type="radio" name="time" id="r3" value="10" />10 дней
+    </div>
+
+    <form hidden>
+        <input type="file" id="filetoupload" />
+        <input type="button" id="send" value="Upload" />
+
+    </form>
+
+    <script type="text/javascript" src="~/Scripts/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript">
+        $('#upload').click(function () {
+            $('#filetoupload').click();
+        });
+        $('#filetoupload').change(function () {
+            $('#send').click();
+        });
+
+
+        $('#send').click(function () {
+            document.getElementById('progress').removeAttribute('hidden');
+            document.getElementById('progressBar').setAttribute("style", "width: 0%;")
+            var fd = new FormData();
+            fd.append("upload", document.getElementById('filetoupload').files[0]);
+
+            if (document.getElementById('r1').checked) {
+                var time = document.getElementById('r1').value;
+                fd.append('time', time);
+            } else if (document.getElementById('r2').checked) {
+                var time = document.getElementById('r2').value;
+                fd.append('time', time);
+            }
+
+            $.ajax({
+                xhr: function (){
+                    var xhr = new XMLHttpRequest();
+                    xhr.upload.addEventListener("progress", uploadProgress, false);
+
+                    return xhr;
+                },
+                type: "POST",
+                url: "/Home/UploadFile",
+                data: fd,
+                processData: false,
+                contentType: false,
+                dataType: "text",
+                success: successFunc,
+                error: errorFunc
+            });
+        });
+
+        function successFunc(data, status) {
+            //document.getElementById('progress').setAttribute('hidden', true);
+            
+            document.getElementById('ref').removeAttribute('hidden');
+            document.getElementById('link').innerHTML = 'http://filemanager12345.azurewebsites.net/Home/Download?key=' + data.toString();
+            document.getElementById('link').setAttribute('href', 'http://filemanager12345.azurewebsites.net/Home/Download?key=' + data.toString());
+            /*document.getElementById('link').innerHTML = data;
+            document.getElementById('link').setAttribute('href', data);*/
+}
+
+        function errorFunc(errorData) {
+            alert('Ошибка' + errorData.responseText);
+        }
+
+        function uploadProgress(evt) {
+            if (evt.lengthComputable) {
+                var percentComplete = Math.round(evt.loaded * 100 / evt.total);
+                document.getElementById('progressBar').innerHTML = percentComplete.toString() + '%';
+                document.getElementById('progressBar').setAttribute("style", "width: " + percentComplete.toString() + "%;")
+            }
+            else {
+                document.getElementById('progressNumber').innerHTML = 'unable to compute';
+            }
+        }
+
+    </script>
+</body>
+</html> 
+

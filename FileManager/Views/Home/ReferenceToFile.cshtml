@@ -1,0 +1,35 @@
+﻿@model FileManager.Models.MyFile
+
+@{
+    Layout = "~/Views/_BasicLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ReferenceToFile</title>
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Ссылка для скачивания файла</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <div class="col-md-10">
+                    <h4><a href="Download?key=@Model.Key">filemanager12345.azurewebsites.net/Home/Download?key=@Model.Key</a></h4>
+                </div>
+            </div>
+        </div>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+</body>
+</html>
